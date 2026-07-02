@@ -6,12 +6,11 @@ import {
   type DateValue,
   type RangeCalendarProps as AriaRangeCalendarProps,
   type CalendarCellProps,
-} from "react-aria-components/RangeCalendar";
+} from "react-aria-components";
 import { composeRenderProps } from "react-aria-components/composeRenderProps";
 import { Button } from "./Button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { CalendarGrid } from "./Calendar";
-import "@/ui/themes/index.css";
 
 export interface RangeCalendarProps<
   T extends DateValue,
@@ -26,7 +25,7 @@ export function RangeCalendar<T extends DateValue>({
   let months = props.visibleDuration?.months || 1;
   return (
     <AriaRangeCalendar {...props}>
-      <div className="months">
+      <div>
         {Array.from({ length: months }, (_, i) => (
           <div key={i} className="month">
             <header>

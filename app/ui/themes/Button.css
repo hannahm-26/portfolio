@@ -25,3 +25,7 @@
   border-color: var(--color-border);
   color: var(--color-text);
 }
+.button--quiet {
+  background: transparent;
+  color: var(--color-text);
+}

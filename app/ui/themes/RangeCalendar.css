@@ -19,6 +19,10 @@
     width: calc(var(--space-9) * 7);
     min-width: calc(var(--space-7) * 7);
     container-type: inline-size;
+    background-color: var(--color-surface-2);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    padding: var(--space-1);
   }
 
   header {
