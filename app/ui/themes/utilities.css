@@ -55,7 +55,7 @@
 
     &:where([data-variant="quiet"]) {
       --button-background: none;
-      --button-text: var(--text-color);
+      --button-text: var(--color-text);
       box-shadow: 0 0 0 1px transparent;
 
       &:where([data-hovered], [data-pressed]) {

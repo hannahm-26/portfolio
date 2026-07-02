@@ -8,8 +8,8 @@
   overflow: auto;
   width: 100%;
   max-width: fit-content;
-  color: var(--text-color);
-  font: var(--text-base) system-ui;
+  color: var(--color-text);
+  font: var(--text-base) ;
 
   .months {
     display: flex;
@@ -41,7 +41,7 @@
   }
 
   [slot="errorMessage"] {
-    font: var(--text-sm) system-ui;
+    font: var(--text-sm) ;
     color: var(--invalid-color);
   }
 }

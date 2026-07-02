@@ -2,7 +2,6 @@
 
 import { Controller, useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "@/ui/Button";
 import { DateRangePicker } from "@/ui/DateRangePicker";
 import { Form } from "./ui/Form";
 import {
@@ -13,6 +12,7 @@ import { getLocalTimeZone, parseDate, today } from "@internationalized/date";
 import { useMemo } from "react";
 import { ThemeChecker } from "@/theme/ThemeChecker";
 import { ContentWrapper } from "@/ui/ContentWrapper";
+import { CountDaysTiles } from "@/CountDaysTiles";
 
 function countWorkingDays(startDate: Date, endDate: Date) {
   const cursor = new Date(startDate);
@@ -25,7 +25,7 @@ function countWorkingDays(startDate: Date, endDate: Date) {
     if (isWeekday) days++;
   }
 
-  return days;
+  return days ?? 0;
 }
 
 export default function Home() {
@@ -46,7 +46,16 @@ export default function Home() {
     control,
     name: "dateRange",
   });
+function countAllDays(startDate: Date, endDate: Date) {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
 
+  start.setHours(0, 0, 0, 0);
+  end.setHours(0, 0, 0, 0);
+
+  const diffInMs = end.getTime() - start.getTime();
+  return Math.round(diffInMs / (1000 * 60 * 60 * 24));
+}
   const workingDays = useMemo(() => {
     if (!dateRange?.start || !dateRange?.end) return null;
 
@@ -60,10 +69,18 @@ export default function Home() {
     console.log("submitted values", values);
     console.log("working days estimate:", workingDays);
   };
+const allDays = useMemo(() => {
+  if (!dateRange?.start || !dateRange?.end) return null;
+
+  const startDate = dateRange.start.toDate(getLocalTimeZone());
+  const endDate = dateRange.end.toDate(getLocalTimeZone());
+
+  return countAllDays(startDate, endDate);
+}, [dateRange]);
 
   return (
     <div>
-      <main>
+      <main className="main">
         <ThemeChecker />
 
         <Form onSubmit={handleSubmit(onSubmit)}>
@@ -81,21 +98,19 @@ export default function Home() {
               )}
             />
           </ContentWrapper>
-          <Button type="submit" variant="primary" className="mt-4">
-            Calculate
-          </Button>
         </Form>
-        <ContentWrapper>
-          <h2 id="countdown-summary-title" className="summary-card__title">
-            Working days left
-          </h2>
-          <h1 className="summary-card__text">
-            {workingDays ?? "—"} working days left
-          </h1>
-          <p className="summary-card__hint">
-            Weekends and holidays are excluded.
-          </p>
-        </ContentWrapper>
+        <div className="day-cards">
+          <CountDaysTiles
+            days={workingDays}
+            subtitle="Weekends and holidays are excluded."
+            title="Working Days"
+          />
+          <CountDaysTiles
+            days={allDays}
+            subtitle="All days calculated."
+            title="All Days"
+          />
+        </div>
       </main>
     </div>
   );

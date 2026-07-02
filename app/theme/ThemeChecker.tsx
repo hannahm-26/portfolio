@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/ui/Button";
+import { Tooltip, TooltipTrigger } from "@/ui/Tooltip";
 import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -50,10 +52,13 @@ export function ThemeChecker() {
   }
 
   return (
-    <button type="button" onClick={toggleTheme}>
-     {theme === "light" ? (      <Moon />
-)
-     : (<Sun/>)}
-    </button>
+    <TooltipTrigger>
+      <Button type="button" variant="secondary" onClick={toggleTheme}>
+        {theme === "light" ? <Moon /> : <Sun />}
+      </Button>
+      <Tooltip>
+        Switch to {theme === "light" ? "dark mode" : "light mode"}
+      </Tooltip>{" "}
+    </TooltipTrigger>
   );
 }

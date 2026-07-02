@@ -7,8 +7,8 @@
   overflow: auto;
   width: 100%;
   max-width: fit-content;
-  font: var(--text-base) system-ui;
-  color: var(--text-color);
+  font: var(--text-base) ;
+  color: var(--color-text);
 
   .months {
     display: flex;

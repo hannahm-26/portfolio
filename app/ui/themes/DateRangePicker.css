@@ -2,7 +2,7 @@
 @import './utilities.css';
 
 .react-aria-DateRangePicker {
-  color: var(--text-color);
+  color: var(--color-text);
   max-width: 100%;
 
   .react-aria-Group {
@@ -21,6 +21,7 @@
     color: var(--color-text);
     white-space: nowrap;
     cursor: text;
+    background-color: var(--color-surface);
 
     &[data-focus-within] {
       outline: 2px solid var(--focus-ring-color);
@@ -40,6 +41,10 @@
     overflow-x: auto;
     overflow-y: clip;
     scrollbar-width: none;
+    border: 1px solid var(--color-border-soft);
+    border-radius: 12px;
+    padding: 2px 4px;
+    justify-items: center;
   }
 
   .field-Button {
