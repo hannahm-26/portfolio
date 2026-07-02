@@ -25,7 +25,7 @@ function countWorkingDays(startDate: Date, endDate: Date) {
     if (isWeekday) days++;
   }
 
-  return days ?? 0;
+  return days;
 }
 
 export default function Home() {
@@ -56,14 +56,14 @@ function countAllDays(startDate: Date, endDate: Date) {
   const diffInMs = end.getTime() - start.getTime();
   return Math.round(diffInMs / (1000 * 60 * 60 * 24));
 }
-  const workingDays = useMemo(() => {
-    if (!dateRange?.start || !dateRange?.end) return null;
+const workingDays = useMemo(() => {
+  if (!dateRange?.start || !dateRange?.end) return 0;
 
-    const startDate = dateRange.start.toDate(getLocalTimeZone());
-    const endDate = dateRange.end.toDate(getLocalTimeZone());
+  const startDate = dateRange.start.toDate(getLocalTimeZone());
+  const endDate = dateRange.end.toDate(getLocalTimeZone());
 
-    return countWorkingDays(startDate, endDate);
-  }, [dateRange]);
+  return countWorkingDays(startDate, endDate);
+}, [dateRange]);
 
   const onSubmit = (values: ValidationSchemaType) => {
     console.log("submitted values", values);
@@ -106,7 +106,7 @@ const allDays = useMemo(() => {
             title="Working Days"
           />
           <CountDaysTiles
-            days={allDays}
+            days={allDays ?? 0}
             subtitle="All days calculated."
             title="All Days"
           />
