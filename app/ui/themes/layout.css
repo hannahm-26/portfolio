@@ -4,7 +4,7 @@
     flex-direction: column;
     background-color: var(--color-surface);
     padding: 12px;
-    border-radius: 12px;
+    border-radius: var(--space-8);
     border: 1px solid var(--color-border-soft);
     align-items: flex-start;
 }
@@ -13,4 +13,18 @@
     display: flex;
     gap: var(--space-4);
     flex-direction: row;
+}
+.basic-alignment {
+    display: flex;
+    gap: var(--space-4);
+    flex-direction: row;
+        align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.heading-landing {
+  display: block;
+  font-size: var(--text-lg) ;
+  font-weight: 700;
+
 }

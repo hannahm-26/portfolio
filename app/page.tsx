@@ -13,6 +13,7 @@ import { useMemo } from "react";
 import { ThemeChecker } from "@/theme/ThemeChecker";
 import { ContentWrapper } from "@/ui/ContentWrapper";
 import { CountDaysTiles } from "@/CountDaysTiles";
+import { Text } from "@/ui/Content";
 
 function countWorkingDays(startDate: Date, endDate: Date) {
   const cursor = new Date(startDate);
@@ -81,8 +82,10 @@ const allDays = useMemo(() => {
   return (
     <div>
       <main className="main">
-        <ThemeChecker />
-
+        <div className="basic-alignment">
+          <ThemeChecker />
+          <Text className="heading-landing">Japan Trip Countdown</Text>
+        </div>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <ContentWrapper>
             <Controller
