@@ -1,0 +1,41 @@
+@import "../app/ui/themes/index.css";
+
+
+
+:root,
+[data-theme="light"] {
+  --background: #f7f6f2;
+  --foreground: #24211d;
+}
+
+[data-theme="dark"] {
+  --background: #171614;
+  --foreground: #f2efe8;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  width: 100%;
+  max-width: 900px;
+  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+  margin: 0 auto;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 16px;
+  }
+}
+:root {
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Instrument Sans", "Inter", sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+}
